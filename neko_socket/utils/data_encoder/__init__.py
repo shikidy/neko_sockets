@@ -37,3 +37,6 @@ class DataEncoder:
             )
             offset = offset + lenght
         return result
+    
+
+

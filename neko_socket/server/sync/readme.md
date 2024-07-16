@@ -14,7 +14,7 @@ class TestData(BaseClass):
 @s.bind("event_name", id=1)
 def callback(data: dict):
     ...
-
+    
 event_name  < 3 bytes
 
 

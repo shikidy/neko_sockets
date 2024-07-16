@@ -1,7 +1,6 @@
 import socket
 
 
-
 class NekoSocket():
 
 

@@ -20,3 +20,6 @@ class Handler:
     @property
     def callback(self):
         return self.__callback
+    
+    def execute(self, *args, **kwrags):
+        self.__callback(*args, **kwrags)

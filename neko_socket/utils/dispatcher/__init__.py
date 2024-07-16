@@ -9,7 +9,6 @@ class Dispatcher:
 
     def bind_event(func: Callable):
         def wrapper_args(self, name: str, id: int):
-            
             def wrapper(*args, **kwargs):
                 return func(*args, **kwargs)
             return wrapper

@@ -10,7 +10,7 @@ class DataEncoder:
             converted = bytes()
             if isinstance(el, (int, float)):
                 el = str(el)
-            converted =  el.encode("utf-8")
+            converted = el.encode("utf-8")
             lenghts.append(len(converted))
             result += converted
         final_result: bytes = len(lenghts).to_bytes(int_bytes, "big")

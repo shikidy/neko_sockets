@@ -11,7 +11,6 @@ from neko_socket import NekoSocket
 
 server = NekoSocket('localhost', 10205)
 
-
 @server.dispatcher.bind_event('Template name', 1)
 def template_callback(*data):
     print(f"Recieved data: {data}")

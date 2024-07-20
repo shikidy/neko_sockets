@@ -67,6 +67,12 @@ class Client:
                 self.execute_with_new_thread(buffer)
                 break
 
+    def start_listen(self, buffer_bytes: int=1024, max_buffer_size: int=1024):
+        Thread(
+            target=self.listen,
+            args=(buffer_bytes, max_buffer_size)
+        )
+
 
 
             

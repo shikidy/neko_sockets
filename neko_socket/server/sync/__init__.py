@@ -1,5 +1,6 @@
 import socket
 
+from .client import Client
 
 
 class NekoSocket():
@@ -13,11 +14,12 @@ class NekoSocket():
 
     def serve(self):
         self.__socket.bind((self.__host, self.__port))
-        self.__start_listening()
 
-    def __start_listening(self): ...
+        while 1:
+            accepted_con, ip = self.__socket.accept()
+            Client(accepted_con, ip).start_listen()
 
-    def __event_dispatcher(self): ...
+
 
 
         

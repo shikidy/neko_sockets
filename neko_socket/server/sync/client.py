@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 class Client:
 
-    def __init__(self, conn: socket.socket, ip: socket._RetAddress, dispatcher: Dispatcher) -> None:
+    def __init__(self, conn: socket.socket, ip, dispatcher: Dispatcher) -> None:
         self.__conn = conn
         self.__ip = ip
         self.__dp = dispatcher
@@ -24,7 +24,7 @@ class Client:
         return self.__ip
     
     def kill(self):
-        self.conn.close()
+        self.conn.detach()
 
     def thread_worker(self, data: bytes):
         try:
@@ -33,7 +33,7 @@ class Client:
                 #FIXME отлов нулевой даты. Нам хотя б айди ивента
                 return
             # id, arg1, arg2 ...
-            self.__dp.execute_event(decoded_data[0], decoded_data[1:])
+            self.__dp.execute_event(int(decoded_data[0]), decoded_data[1:])
         except ValueError as err:
             logger.exception(err)
         
@@ -49,6 +49,7 @@ class Client:
 
     def listen(self, buffer_bytes: int=1024, max_buffer_size: int=1024):
         buffer = bytes()
+        logger.debug(f"Starting listen {self.ip}")
         while 1:
             readed_bytes =  self.__conn.recv(buffer_bytes)
             if len(readed_bytes) == 0:
@@ -71,7 +72,7 @@ class Client:
         Thread(
             target=self.listen,
             args=(buffer_bytes, max_buffer_size)
-        )
+        ).start()
 
 
 

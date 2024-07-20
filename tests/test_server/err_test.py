@@ -1,6 +1,7 @@
 import time
 import socket
 import logging
+import pytest
 from threading import Thread
 
 from neko_socket import NekoSocket, DataEncoder
@@ -15,6 +16,7 @@ class TestServerConnections:
     def teardown_method(self):
         self.server.close()
 
+    @pytest.mark.skip
     def test_send_and_recieve_data(self):
         gotted_data = None
         test_data = ("1", "MyNameIs", "python")

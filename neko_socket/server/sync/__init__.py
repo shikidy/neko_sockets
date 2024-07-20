@@ -7,8 +7,6 @@ from .client import Client
 from neko_socket import Dispatcher
 
 
-logger = logging.getLogger(__name__)
-
 class NekoSocket():
 
 
@@ -38,7 +36,6 @@ class NekoSocket():
                 accepted_con, ip = self.__socket.accept()
             except:
                 break
-            logger.debug(f"{ip} connected")
             client = Client(accepted_con, ip, self.dispatcher)
             client.start_listen(self.__buffer_size, self.__max_buffer)
             self.__clients.append(client)

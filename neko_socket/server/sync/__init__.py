@@ -16,7 +16,7 @@ class NekoSocket():
 
     def __start_listening(self): ...
 
-    def __event_dispatcher(self, )
+    def __event_dispatcher(self): ...
 
 
         
